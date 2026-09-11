@@ -2,42 +2,57 @@
 
 ## Summary
 Single-page, self-contained cinematic website for streamer Amy Birdhouse
-("Le Canard Gaming" — DOTA 2 / Age of Empires II / ducks). Brief lives in
+("Le Canard Gaming" — DOTA 2 / Age of Empires II / ducks). Original brief:
 `C:\Users\Serge\Desktop\Claude — Le Canard Gaming Master Website Prompt.md`.
-Core rule: **the pond IS the site** — content emerges from an animated
-nighttime pond environment, not cards on a background image.
+Entry point is `index.html` (root) + `assets/`.
 
-Assets in `assets/` are a mix of:
-- a pixel-art teal duck fighter spritesheet (idle/walk/jump/attacks/etc,
-  64x64 frames, several 4-frame strips) — used as the "mascot" duck you can
-  walk around with arrow keys (secret keyboard interaction).
-- `DuckIcon.png` — used as favicon.
-- misc rubber-duck / pond renders (`Ducks-ponds*.png`, `bubbles.png`) — not
-  used in v1 (primary visual language is CSS/SVG per brief); kept in case we
-  want raster flourishes later.
-- No real photo of Amy exists — portrait section uses a designed placeholder
-  frame, not a fabricated photo.
+- Live: https://le-canard-gaming.pages.dev
+- Repo: https://github.com/Chimthuwu/Le-Canard-Gaming
+- Cloudflare: classic Pages project `le-canard-gaming` (account
+  Chimske@gmail.com's Account). Deploy with:
+  `npx wrangler pages deploy . --project-name=le-canard-gaming`
+  (deploys only tracked-looking site files; classic Pages auto-excludes
+  `.git`/`node_modules`, unlike the newer Workers-assets path — do NOT use
+  `wrangler deploy` or `wrangler pages project create` without `--force`
+  here, it redirects to Workers-assets and will upload `.git` publicly).
 
-## Status: v1 build in progress
+## Status: live, iterating on feedback
 
-## Now
-- [ ] Build `le-canard-gaming.html` (single self-contained file) with:
-  intro cinematic + replay, pond-world background, hero, duck discovery,
-  live section, DOTA world, AOE world, community/pond, schedule, Amy,
-  Inner Circle request portal ("THE DEEP WATER"), socials, footer,
-  a11y + reduced-motion + mobile recomposition.
+## Done
+- Full site per the master brief: intro cinematic + replay, pond
+  environment (moon/reeds/fireflies/water/tint-per-section), hero, live
+  section, community/schedule, Amy section, Inner Circle request portal
+  ("THE DEEP WATER"), socials, footer, hidden-duck discovery game with a
+  mascot duck (arrow-key easter egg), a11y + reduced-motion + mobile.
+- DOTA 2 / Age of Empires II "world" sections were built per the brief,
+  then **removed** at the user's request (2026-09-12) — cut entirely, not
+  just hidden. Related CSS (`.game-world`, `.world-*`, embers/torches) and
+  the nav "Games" link were removed too.
+- Hero centerpiece swapped from a hand-drawn SVG blob (user: "this doesn't
+  look like a duck at all") to `assets/DuckIcon.png` floating on animated
+  water rings.
+- Social preview metadata added (OG/Twitter) with a generated 1200x630
+  thumbnail at `assets/og-image.png` (built from a temp HTML card,
+  screenshotted headlessly via local Edge — see git history if it needs
+  regenerating).
+- GitHub repo created (public) and pushed; deployed to Cloudflare Pages.
 
-## Next
-- [ ] Open in browser, sanity-check animations, reduced-motion, mobile width,
-  keyboard interaction, duck-discovery persistence.
-- [ ] Wire real socials/Twitch/Discord URLs and `requestEndpoint` once Amy
-  provides them (currently placeholders in the `CONFIG` object at top of
-  the `<script>`).
+## Next / open questions
+- User said Discord user ID `821485604864524288` is Amy's — not yet wired
+  into anything (unclear if it should become the "Join Discord" link,
+  which currently is still a `#` placeholder in `CONFIG.discordUrl`, or is
+  meant for something else like a future backend notification target for
+  the request portal). Ask before using it as a public-facing link.
+- Real socials/Twitch/Discord invite URLs and `CONFIG.requestEndpoint`
+  (backend for the Inner Circle request form) still placeholders.
+- Real portrait photo for the Amy section (currently a designed
+  placeholder frame, per the brief — no fabricated photo).
+- Custom domain not set up; currently only `*.pages.dev`.
 
-## Later / open questions
-- Real portrait photo for the Amy section.
-- Real Twitch API integration for live status (frontend is structured for
-  it — see `CONFIG` and the `renderLiveState()` function — but currently
-  shows static demo data).
-- Backend for the request portal (`CONFIG.requestEndpoint`) — currently a
-  demo-only intercepted submit, no network call, no payment handling.
+## Known quirk (not a site bug)
+While QA-ing in this session, the Claude-in-Chrome extension's own
+screenshot capture occasionally rendered stale/tiled frames or phantom
+gray overlay boxes over certain absolutely-positioned elements. Confirmed
+via `getComputedStyle` (backgrounds were transparent) and via a clean
+headless Edge screenshot of the same page — it's an artifact of that
+automation tooling, not the page.

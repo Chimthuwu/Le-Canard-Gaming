@@ -190,11 +190,18 @@ body[data-tint="portal"] .tint-overlay{opacity:.7;background:radial-gradient(cir
 .intro-moon{position:absolute;top:16%;width:72px;height:72px;border-radius:50%;background:radial-gradient(circle at 35% 32%,#fffef2,var(--duck2) 60%);opacity:0;filter:blur(1px)}
 #intro.played .intro-moon{animation:introFadeScale 2.2s ease .6s forwards}
 @keyframes introFadeScale{0%{opacity:0;transform:scale(.4)}100%{opacity:1;transform:scale(1);filter:blur(0)}}
-.intro-duck{position:absolute;bottom:42%;font-size:34px;opacity:0;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5))}
-.intro-duck svg{width:46px;height:46px;fill:#0d1f1a;filter:drop-shadow(0 0 10px rgba(255,227,138,.35))}
-#intro.played .intro-duck.d1{animation:introDuck 2.6s cubic-bezier(.3,.7,.3,1) 1.3s forwards}
-#intro.played .intro-duck.d2{bottom:38%;animation:introDuck 2.4s cubic-bezier(.3,.7,.3,1) 2.1s forwards}
-@keyframes introDuck{0%{left:-8%;opacity:0}10%{opacity:.85}90%{opacity:.85}100%{left:104%;opacity:0}}
+.intro-duck{position:absolute;bottom:42%;opacity:0}
+.intro-duck img{display:block;image-rendering:pixelated;filter:drop-shadow(0 8px 10px rgba(0,0,0,.55)) drop-shadow(0 0 12px rgba(255,227,138,.3))}
+.intro-duck.d1 img{width:52px;height:52px}
+.intro-duck.d2 img{width:34px;height:34px}
+.intro-duck.d3 img{width:42px;height:42px}
+.intro-duck.d4 img{width:26px;height:26px}
+#intro.played .intro-duck.d1{animation:introDuck 2.6s cubic-bezier(.3,.7,.3,1) .9s forwards}
+#intro.played .intro-duck.d2{bottom:37%;animation:introDuckRev 2.3s cubic-bezier(.3,.7,.3,1) 1.7s forwards}
+#intro.played .intro-duck.d3{bottom:46%;animation:introDuck 2.8s cubic-bezier(.3,.7,.3,1) 1.9s forwards}
+#intro.played .intro-duck.d4{bottom:33%;animation:introDuckRev 2.1s cubic-bezier(.3,.7,.3,1) .3s forwards}
+@keyframes introDuck{0%{left:-8%;opacity:0}10%{opacity:.95}90%{opacity:.95}100%{left:104%;opacity:0}}
+@keyframes introDuckRev{0%{right:-8%;opacity:0}10%{opacity:.95}90%{opacity:.95}100%{right:104%;opacity:0}}
 .intro-text{position:relative;z-index:2;text-align:center;padding:0 20px}
 .intro-text>*{opacity:0;transform:translateY(16px)}
 #intro.played .intro-kicker{animation:introRise .8s ease 3.1s forwards}
@@ -440,12 +447,10 @@ footer{position:relative;z-index:1;padding:80px 0 34px;border-top:1px solid var(
   <div class="intro-stage">
     <div class="intro-ripple"></div>
     <div class="intro-moon" aria-hidden="true"></div>
-    <div class="intro-duck d1" aria-hidden="true">
-      <svg viewBox="0 0 64 64"><path d="M8 40c0-10 8-18 20-18 4 0 7 1 10 3 2-3 6-5 10-5 1 0 2 2 0 3-3 1-5 3-6 6 4 3 6 7 6 12 0 8-9 14-20 14S8 48 8 40z"/></svg>
-    </div>
-    <div class="intro-duck d2" aria-hidden="true">
-      <svg viewBox="0 0 64 64"><path d="M8 40c0-10 8-18 20-18 4 0 7 1 10 3 2-3 6-5 10-5 1 0 2 2 0 3-3 1-5 3-6 6 4 3 6 7 6 12 0 8-9 14-20 14S8 48 8 40z"/></svg>
-    </div>
+    <div class="intro-duck d1" aria-hidden="true"><img src="assets/DuckIcon.png" alt=""></div>
+    <div class="intro-duck d2" aria-hidden="true"><img src="assets/DuckIcon.png" alt="" style="transform:scaleX(-1)"></div>
+    <div class="intro-duck d3" aria-hidden="true"><img src="assets/DuckIcon.png" alt=""></div>
+    <div class="intro-duck d4" aria-hidden="true"><img src="assets/DuckIcon.png" alt="" style="transform:scaleX(-1)"></div>
     <div class="intro-text">
       <span class="intro-kicker">Amy Birdhouse 🦆</span>
       <h1 class="intro-title">LE CANARD<br>GAMING</h1>
